@@ -4,6 +4,8 @@ import com.example.demo.domain.entities.AuthorEntity;
 import com.example.demo.domain.entities.BookEntity;
 import com.example.demo.repositories.BookRepository;
 import com.example.demo.services.BookService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,11 @@ public class BookServiceImpl implements BookService {
                 bookRepository.findAll().spliterator(),
                 false
         ).toList();
+    }
+
+    @Override
+    public Page<BookEntity> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
     @Override

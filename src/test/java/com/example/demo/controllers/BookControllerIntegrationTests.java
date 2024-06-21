@@ -90,9 +90,9 @@ public class BookControllerIntegrationTests {
                         .get("/books")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[0].isbn").value(testBookEntity.getIsbn())
+                MockMvcResultMatchers.jsonPath("$.content[0].isbn").value(testBookEntity.getIsbn())
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[0].title").value(testBookEntity.getTitle())
+                MockMvcResultMatchers.jsonPath("$.content[0].title").value(testBookEntity.getTitle())
         );
     }
 
