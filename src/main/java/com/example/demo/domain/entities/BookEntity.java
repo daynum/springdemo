@@ -1,5 +1,7 @@
-package com.example.demo.domain;
+package com.example.demo.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,12 +14,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name="books")
-public class Book {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class BookEntity {
     @Id
     private String isbn;
     private String title;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="author_id")
-    private Author author;
+    private AuthorEntity authorEntity;
+
+    @JsonProperty("year")
+    private Integer yearPublished;
 }
